@@ -1,4 +1,4 @@
-1. Created a div called board                             //use github repository for practice?
+1. Created a div called board                             
 2. Created 9 sections in board
 3. Every section has 9 cells
 
@@ -7,29 +7,27 @@
 
 //Checking system
 
-a. check in real time input with final answer
-b. check input only with real time board and then final answer
+6.create solved board
+7.check answer with solved board
+//TODO keep track of wrong inputs
+//make game over
+ //make restart
 
-6. Check if number is unique inside a square
-7. If number is unique horisontally
-8. If number is unque vertically
+
+
+
+
+
 
 make sudoku solver?
 
+make random sudoku generator
 
-//Static board
-9. input static numbers
-//Generating board
-10. make logic to generate random board
-
-
-
-
--game over-restart
 
 
 /////UI
 -login sign in store information
+-games won games lost
 
 
 
@@ -40,4 +38,4 @@ make sudoku solver?
 -levels
 -store sudoku
 -create a pad for inserting numbers into board
-
+-make api for sharing sudoku with solutions
