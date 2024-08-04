@@ -9,25 +9,34 @@
 
 6.create solved board
 7.check answer with solved board
-//TODO keep track of wrong inputs
-//make game over
- //make restart
+8. make several puzzle boards and randomly input them
 
-
-
-
-
-
-
-make sudoku solver?
-
-make random sudoku generator
-
+ MAKE UI
+9. 
+-main page 
+-create a pad for inserting numbers into board
+-make game over
+-make restart
+-header 
+-footer
+-make them with ejs
 
 
 /////UI
 -login sign in store information
 -games won games lost
+-levels
+-store sudoku
+
+
+
+make sudoku solver?
+
+
+
+
+
+
 
 
 
@@ -35,7 +44,6 @@ make random sudoku generator
 //Future Improveents
 
 -highlighting help
--levels
--store sudoku
--create a pad for inserting numbers into board
+
+
 -make api for sharing sudoku with solutions
