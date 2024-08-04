@@ -12,9 +12,9 @@
 8. make several puzzle boards and randomly input them
 
  MAKE UI
-9. 
+9. -create a pad for inserting numbers into board
 -main page 
--create a pad for inserting numbers into board
+
 -make game over
 -make restart
 -header 
@@ -27,7 +27,7 @@
 -games won games lost
 -levels
 -store sudoku
-
+-make for phones too (if it is smaller than width of board and numpad, put numpad under the board)
 
 
 make sudoku solver?

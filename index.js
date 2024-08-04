@@ -72,7 +72,7 @@ const solvedPuzzle3 = [
 const puzzleArray = [puzzle1,puzzle2,puzzle3];
 const solvedPuzzleArray = [solvedPuzzle1,solvedPuzzle2,solvedPuzzle3];
 let randomNumber = parseInt(Math.random()* puzzleArray.length);
-console.log(randomNumber);
+
 createBoard(randomNumber);
 function createBoard(number){
 
@@ -125,3 +125,4 @@ $("body").keydown(function(event){
  
     //make restart
     //center txt inside cell and make it bigger in css
+//finish numpad

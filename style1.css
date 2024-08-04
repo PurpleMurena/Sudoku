@@ -31,3 +31,45 @@
     box-sizing: border-box;
     border: 1px black solid;
 }
+#console{
+    width: 270px;
+    height: 270px;
+    background-color: rgb(106, 207, 207);
+   
+}
+
+#state{
+    width: 270px;
+    height: 40px;
+    background-color: azure;
+    display:grid;
+    grid-template-columns: repeat(3, 90px);
+    
+}
+/* #timer{
+    grid-column-start: 0;
+    grid-column-end: 1;
+
+} */
+#numpadDiv{
+    width: 270px;
+    height: 185px;
+    background-color: rgb(155, 227, 227);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+   
+    
+}
+#numpad{
+    width: 180px;
+    height: 160px;
+    background-color: rgb(36, 191, 191);
+}
+#controlPanel{
+    width: 270px;
+    height: 45px;
+    background-color: rgb(27, 117, 117);
+    display:grid;
+    grid-template-columns: repeat(4, 65px);
+}
