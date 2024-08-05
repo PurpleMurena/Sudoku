@@ -12,7 +12,8 @@
 8. make several puzzle boards and randomly input them
 
  MAKE UI
-9. -create a pad for inserting numbers into board
+9. create a pad for inserting numbers into board
+10. connect num pad to inserting numbers 
 -main page 
 
 -make game over

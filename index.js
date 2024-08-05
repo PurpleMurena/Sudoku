@@ -104,12 +104,20 @@ function createBoard(number){
 //do i need to use class? for sudoku cells?
 $("body").keydown(function(event){
     var input = event.key;
-    var type = parseInt(input);
+    inputUserValue(target, input);
+});
+$("td").click(function(e){
+    let value = e.target.firstChild.textContent;
+    inputUserValue(target, value   );
+    
+}); 
+function  inputUserValue(t, value){
+    var type = parseInt(value);
     //console.log(type == "number");
     let currentSolvedPuzzle = solvedPuzzleArray[randomNumber];
     if( typeof type === "number" && !isNaN(type) && type !== 0){
         if(currentSolvedPuzzle[idDiv][idCell] == type ){
-            $(`#${target}`).text(`${input}`);
+            $(`#${t}`).text(`${value}`);
             console.log("right");}
         else{
             console.log("wrong");
@@ -121,8 +129,9 @@ $("body").keydown(function(event){
         }
             
     }
-});
- 
+}
+
+
     //make restart
     //center txt inside cell and make it bigger in css
 //finish numpad
