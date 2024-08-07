@@ -3,6 +3,7 @@ let target ;
 let idDiv;
 let idCell;
 let count = 0;
+let restartValue = false;
 const puzzle1 = [ 
 [3, 0, 6, 5, 0, 8, 4, 0, 0],
 [5, 2, 0, 0, 0, 0, 0, 0, 0],
@@ -75,7 +76,7 @@ let randomNumber = parseInt(Math.random()* puzzleArray.length);
 
 createBoard(randomNumber);
 function createBoard(number){
-
+    
     var currentBoard = puzzleArray[number];
     for(var i=0; i<9 ;i++){
         const div = $('<div>',{class:"section", id: `div${i+1}`});
@@ -122,16 +123,41 @@ function  inputUserValue(t, value){
         else{
             console.log("wrong");
             count++;
+            $("#mistakes").text(`${count}`);
+            
             if(count == 3){
                 console.log("game over");
-                count= 0;
+                gameover();
+                // if(restartValue == true){
+                    $("body").click(restart);
+                    
+                    
+                // }
+                    
+                    
+            
+                
             }
         }
             
     }
 }
+function restart(){
+    count= 0;
+    container.empty();
+    container.attr('id', "board");
+    randomNumber = parseInt(Math.random()* puzzleArray.length);
+    createBoard(randomNumber);
+    $("#mistakes").text(`${count}`);
+    // restartValue == false;
+    $("body").off("click");
+}
 
-
-    //make restart
-    //center txt inside cell and make it bigger in css
+function gameover(){
+    container.empty();
+    container.attr('id', "gameover");
+    container.append($('<div>',{text: "GAME OVER"}));
+    container.append($('<div>',{text: "click anywhere to restart"}));
+    // restartValue = true;
+}
 //finish numpad

@@ -14,37 +14,52 @@
  MAKE UI
 9. create a pad for inserting numbers into board
 10. connect num pad to inserting numbers 
--main page 
+11. make game over
+12. make restart
 
--make game over
--make restart
+
+-make timer
+-make mistakes in xxx
+-display level
+-change numpad
+-edit notes delete hints
+
+SUDOKU STYLING
+-highlighting help
+-rounding
+-make it pop when cell is chosen/ change its color
+
+-main page
+
 -header 
 -footer
 -make them with ejs
-
+-make for phones too (if it is smaller than width of board and numpad, put numpad under the board)
 
 /////UI
 -login sign in store information
 -games won games lost
 -levels
 -store sudoku
--make for phones too (if it is smaller than width of board and numpad, put numpad under the board)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+IDEAS
+sudoku on timer that changes time according to level
 make sudoku solver?
+-make api for sharing sudoku with solutions/ tO solve sudoku
+make couple play
 
 
 
-
-
-
-
-
-
-
-//Future Improveents
-
--highlighting help
-
-
--make api for sharing sudoku with solutions
