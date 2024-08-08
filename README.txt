@@ -33,7 +33,7 @@ SUDOKU STYLING
 
 -header 
 -footer
--make them with ejs
+-make them with ejs (ejs for keeping count?)
 -make for phones too (if it is smaller than width of board and numpad, put numpad under the board)
 
 /////UI

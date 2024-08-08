@@ -1,4 +1,4 @@
-let container = $("#board");
+let board = $("#board");
 let target ;
 let idDiv;
 let idCell;
@@ -73,14 +73,15 @@ const solvedPuzzle3 = [
 const puzzleArray = [puzzle1,puzzle2,puzzle3];
 const solvedPuzzleArray = [solvedPuzzle1,solvedPuzzle2,solvedPuzzle3];
 let randomNumber = parseInt(Math.random()* puzzleArray.length);
-
+let start = 0;
+let end = 0;
 createBoard(randomNumber);
 function createBoard(number){
-    
+    start = new Date();
     var currentBoard = puzzleArray[number];
     for(var i=0; i<9 ;i++){
         const div = $('<div>',{class:"section", id: `div${i+1}`});
-        container.prepend(div);
+        board.prepend(div);
         for(var j=0;j<9 ;j++){
             
             const box = $('<div>',{class:"cell", id: `div${i+1}Cell${j+1}`});
@@ -102,14 +103,26 @@ function createBoard(number){
         }
     
 }}
+let click = 0;
 //do i need to use class? for sudoku cells?
 $("body").keydown(function(event){
-    var input = event.key;
-    inputUserValue(target, input);
+    if(restartValue == false){
+        var input = event.key;
+        inputUserValue(target, input);
+        // click++;
+        // console.log(click);
+    }
 });
-$("td").click(function(e){
-    let value = e.target.firstChild.textContent;
-    inputUserValue(target, value   );
+
+$(".numbers").click(function(e){
+    if(restartValue == false){
+        // click++;
+        // console.log(click);
+        let value = e.target.firstChild.textContent;
+        inputUserValue(target, value);
+        
+    }
+    
     
 }); 
 function  inputUserValue(t, value){
@@ -119,45 +132,52 @@ function  inputUserValue(t, value){
     if( typeof type === "number" && !isNaN(type) && type !== 0){
         if(currentSolvedPuzzle[idDiv][idCell] == type ){
             $(`#${t}`).text(`${value}`);
-            console.log("right");}
+            //console.log("right");
+            }
         else{
-            console.log("wrong");
+            //console.log("wrong");
             count++;
             $("#mistakes").text(`${count}`);
             
             if(count == 3){
-                console.log("game over");
                 gameover();
-                // if(restartValue == true){
-                    $("body").click(restart);
-                    
-                    
-                // }
-                    
-                    
-            
-                
+                end = new Date();
+                timer(start,end);
+                setTimeout(function(){$("body").click(restart);  }, 200);
             }
+            
         }
             
     }
+   
 }
 function restart(){
     count= 0;
-    container.empty();
-    container.attr('id', "board");
+    board.empty();
+    board.attr('id', "board");
     randomNumber = parseInt(Math.random()* puzzleArray.length);
     createBoard(randomNumber);
     $("#mistakes").text(`${count}`);
-    // restartValue == false;
     $("body").off("click");
+    restartValue = false;
 }
 
 function gameover(){
-    container.empty();
-    container.attr('id', "gameover");
-    container.append($('<div>',{text: "GAME OVER"}));
-    container.append($('<div>',{text: "click anywhere to restart"}));
-    // restartValue = true;
+   
+    console.log("game over");
+    board.empty();
+    board.attr('id', "gameover");
+    board.append($('<div>',{text: "GAME OVER"}));
+    board.append($('<div>',{text: "click anywhere to restart"}));
+     
+    restartValue = true;
 }
-//finish numpad
+
+// function timer(s, e){
+//     let difference = start - end;
+//     let seconds = difference/1000;
+//     let minutes = seconds/60;
+//     seconds = minutes%seconds;
+//     console.log(`${minutes} : ${seconds}`);
+// }
+// timer();
