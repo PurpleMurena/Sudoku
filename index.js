@@ -73,51 +73,48 @@ const solvedPuzzle3 = [
 const puzzleArray = [puzzle1,puzzle2,puzzle3];
 const solvedPuzzleArray = [solvedPuzzle1,solvedPuzzle2,solvedPuzzle3];
 let randomNumber = parseInt(Math.random()* puzzleArray.length);
-let start = 0;
-let end = 0;
-createBoard(randomNumber);
-function createBoard(number){
-    start = new Date();
-    var currentBoard = puzzleArray[number];
-    for(var i=0; i<9 ;i++){
-        const div = $('<div>',{class:"section", id: `div${i+1}`});
-        board.prepend(div);
-        for(var j=0;j<9 ;j++){
-            
-            const box = $('<div>',{class:"cell", id: `div${i+1}Cell${j+1}`});
-            if(currentBoard[i][j] != 0){
-                box.text(`${currentBoard[i][j]}`);
-            }
-            else
-                box.text(` `);
-            div.prepend(box);
 
-            box.click(function(e){
-                //console.log(e.target.id);
-                target = e.target.id;
-                idDiv = target.slice(3,4)-1;
-                idCell = target.slice(8,9)-1;
-                //console.log(idDiv,idCell);
-            });
-            
-        }
-    
-}}
-let click = 0;
+createBoard(randomNumber);
+    function createBoard(number){
+        var currentBoard = puzzleArray[number];
+        for(var i=0; i<9 ;i++){
+            const div = $('<div>',{class:"section", id: `div${i+1}`});
+            board.prepend(div);
+            for(var j=0;j<9 ;j++){
+                
+                const box = $('<div>',{class:"cell", id: `div${i+1}Cell${j+1}`});
+                if(currentBoard[i][j] != 0){
+                    box.text(`${currentBoard[i][j]}`);
+                }
+                else
+                    box.text(` `);
+                div.prepend(box);
+
+                box.click(function(e){
+                    //console.log(e.target.id);
+                    target = e.target.id;
+                    idDiv = target.slice(3,4)-1;
+                    idCell = target.slice(8,9)-1;
+                    //console.log(idDiv,idCell);
+                });
+                
+            }
+
+    }}
+let timerOn = false;
 //do i need to use class? for sudoku cells?
 $("body").keydown(function(event){
+    
     if(restartValue == false){
         var input = event.key;
         inputUserValue(target, input);
-        // click++;
-        // console.log(click);
+        
     }
 });
 
 $(".numbers").click(function(e){
     if(restartValue == false){
-        // click++;
-        // console.log(click);
+        
         let value = e.target.firstChild.textContent;
         inputUserValue(target, value);
         
@@ -127,7 +124,6 @@ $(".numbers").click(function(e){
 }); 
 function  inputUserValue(t, value){
     var type = parseInt(value);
-    //console.log(type == "number");
     let currentSolvedPuzzle = solvedPuzzleArray[randomNumber];
     if( typeof type === "number" && !isNaN(type) && type !== 0){
         if(currentSolvedPuzzle[idDiv][idCell] == type ){
@@ -136,14 +132,19 @@ function  inputUserValue(t, value){
             }
         else{
             //console.log("wrong");
+            if(timerOn == false){
+                start();
+                timerOn = true;
+            }
             count++;
             $("#mistakes").text(`${count}`);
-            
+            let gO;
             if(count == 3){
-                gameover();
-                end = new Date();
-                timer(start,end);
+                 gO = gameover(); 
                 setTimeout(function(){$("body").click(restart);  }, 200);
+            }
+            if(gO == true) {
+                stop();
             }
             
         }
@@ -160,6 +161,7 @@ function restart(){
     $("#mistakes").text(`${count}`);
     $("body").off("click");
     restartValue = false;
+    timerOn= false;
 }
 
 function gameover(){
@@ -169,15 +171,37 @@ function gameover(){
     board.attr('id', "gameover");
     board.append($('<div>',{text: "GAME OVER"}));
     board.append($('<div>',{text: "click anywhere to restart"}));
-     
     restartValue = true;
+    
+    return true;
 }
 
-// function timer(s, e){
-//     let difference = start - end;
-//     let seconds = difference/1000;
-//     let minutes = seconds/60;
-//     seconds = minutes%seconds;
-//     console.log(`${minutes} : ${seconds}`);
-// }
-// timer();
+//Timer
+let timer = null;
+let startTime = 0;
+let elapsedTime = 0;
+let isRunning = false;
+
+function start( ){
+    if(!isRunning){
+        startTime = Date.now() - elapsedTime;
+        timer = setInterval(update, 10);
+        isRunning = true;
+        
+    }
+}
+function stop(){
+    if(isRunning){
+        clearInterval(timer);
+        elapsedTime = Date.now() - startTime;
+        isRunning = false;
+    }
+}
+function update(){
+    
+    const currentTime = Date.now();
+    elapsedTime = currentTime - startTime;
+    let minutes = Math.floor(elapsedTime / (1000 * 60) % 60);
+    let seconds = Math.floor(elapsedTime / 1000 % 60);
+    $("#timer").text(`${minutes}:${seconds}`);
+}
