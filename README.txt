@@ -17,8 +17,8 @@
 11. make game over
 12. make restart
 
-
--make timer
+//do i need to use class? for sudoku cells?
+13. make timer
 -make mistakes in xxx
 -display level
 -change numpad
@@ -27,7 +27,7 @@
 SUDOKU STYLING
 -highlighting help
 -rounding
--make it pop when cell is chosen/ change its color
+14. make it pop when cell is chosen/ change its color
 
 -main page
 

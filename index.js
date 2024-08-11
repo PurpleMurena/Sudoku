@@ -4,6 +4,7 @@ let idDiv;
 let idCell;
 let count = 0;
 let restartValue = false;
+let isBoxEmpty;
 const puzzle1 = [ 
 [3, 0, 6, 5, 0, 8, 4, 0, 0],
 [5, 2, 0, 0, 0, 0, 0, 0, 0],
@@ -75,6 +76,8 @@ const solvedPuzzleArray = [solvedPuzzle1,solvedPuzzle2,solvedPuzzle3];
 let randomNumber = parseInt(Math.random()* puzzleArray.length);
 
 createBoard(randomNumber);
+    let previousTarget;
+    
     function createBoard(number){
         var currentBoard = puzzleArray[number];
         for(var i=0; i<9 ;i++){
@@ -85,73 +88,96 @@ createBoard(randomNumber);
                 const box = $('<div>',{class:"cell", id: `div${i+1}Cell${j+1}`});
                 if(currentBoard[i][j] != 0){
                     box.text(`${currentBoard[i][j]}`);
+                    
                 }
-                else
+                else{
                     box.text(` `);
+                    
+                }
+                    
                 div.prepend(box);
 
                 box.click(function(e){
-                    //console.log(e.target.id);
+                    // console.log(e.target.id);
+                    $(`#${previousTarget}`).removeClass('highlight');
                     target = e.target.id;
                     idDiv = target.slice(3,4)-1;
                     idCell = target.slice(8,9)-1;
-                    //console.log(idDiv,idCell);
+                    $(`#${target}`).addClass('highlight');
+                    previousTarget = target;
+                    
                 });
                 
             }
 
     }}
-let timerOn = false;
-//do i need to use class? for sudoku cells?
+
+//input through keyboard
 $("body").keydown(function(event){
     
     if(restartValue == false){
         var input = event.key;
         inputUserValue(target, input);
-        
     }
 });
-
+//input through numpad
 $(".numbers").click(function(e){
+    
     if(restartValue == false){
-        
         let value = e.target.firstChild.textContent;
         inputUserValue(target, value);
-        
     }
-    
-    
 }); 
+//input function
+let timerOn = false;
+
 function  inputUserValue(t, value){
-    var type = parseInt(value);
+
     let currentSolvedPuzzle = solvedPuzzleArray[randomNumber];
-    if( typeof type === "number" && !isNaN(type) && type !== 0){
-        if(currentSolvedPuzzle[idDiv][idCell] == type ){
-            $(`#${t}`).text(`${value}`);
-            //console.log("right");
+    var userInput = parseInt(value);
+    
+
+        if( typeof userInput === "number" && !isNaN(userInput) && userInput !== 0){
+
+            console.log(userInput);
+    
+            if(currentSolvedPuzzle[idDiv][idCell] == userInput ){
+    
+                $(`#${t}`).text(`${value}`);
+                //removing wrong answer highlight
+                $(`#${target}`).removeClass('wrongAnswer');
+                console.log("right");
             }
-        else{
-            //console.log("wrong");
-            if(timerOn == false){
-                start();
-                timerOn = true;
+            else{
+                //if value is wrong
+                $(`#${t}`).text(`${value}`);
+                console.log("wrong");
+    
+                //highlighting wrong answer
+                $(`#${target}`).addClass('wrongAnswer');
+    
+                if(timerOn == false){
+                    start();
+                    timerOn = true;
+                }
+                count++;
+                $("#mistakes").text(`${count}`);
+                let gO;
+                if(count == 3){
+                     gO = gameover(); 
+                    setTimeout(function(){$("body").click(restart);  }, 200);
+                }
+                if(gO == true) {
+                    stop();
+                }
+                
             }
-            count++;
-            $("#mistakes").text(`${count}`);
-            let gO;
-            if(count == 3){
-                 gO = gameover(); 
-                setTimeout(function(){$("body").click(restart);  }, 200);
-            }
-            if(gO == true) {
-                stop();
-            }
-            
+                
         }
-            
     }
+    
    
-}
+
 function restart(){
     count= 0;
     board.empty();
@@ -160,6 +186,7 @@ function restart(){
     createBoard(randomNumber);
     $("#mistakes").text(`${count}`);
     $("body").off("click");
+    $("#timer").text(`00:00`);
     restartValue = false;
     timerOn= false;
 }
@@ -205,3 +232,10 @@ function update(){
     let seconds = Math.floor(elapsedTime / 1000 % 60);
     $("#timer").text(`${minutes}:${seconds}`);
 }
+    //remove higlights ones unclicked
+    //timer to retart
+    //we can see all inputs
+
+//timer when mistakes
+
+//when clicking on existing number nothing happens

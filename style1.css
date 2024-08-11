@@ -79,12 +79,16 @@
     flex-direction: column;
     
 }
-#numbersDiv{
-}
 .numbers{
     width: 40px;
     height: 50px;
     text-align: center;
     font-size: 22px;
     display: inline-block;
+}
+.highlight{
+    background-color: aqua !important;
+}
+.wrongAnswer{
+    background-color: red !important;
 }
