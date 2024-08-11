@@ -92,6 +92,7 @@ createBoard(randomNumber);
                 }
                 else{
                     box.text(` `);
+                    box.addClass('empty');
                     
                 }
                     
@@ -115,7 +116,7 @@ let timerOn = 0;
 //input through keyboard
 $("body").keydown(function(event){
     
-    if(restartValue == false){
+    if(restartValue == false && $(`#${target}`).hasClass('empty')){
         var input = event.key;
         
         if(timerOn == 0){
@@ -128,7 +129,7 @@ $("body").keydown(function(event){
 //input through numpad
 $(".numbers").click(function(e){
     
-    if(restartValue == false){
+    if(restartValue == false && $(`#${target}`).hasClass('empty')){
         let value = e.target.firstChild.textContent;
         
         if(timerOn == 0){
@@ -173,7 +174,7 @@ function  inputUserValue(t, value){
                 let gO;
                 if(count == 3){
                      gO = gameover(); 
-                    setTimeout(function(){$("body").click(restart);  }, 200);
+                    setTimeout(function(){$("body").click(restart)}, 200);
                 }
                 if(gO == true) {
                     stop();
