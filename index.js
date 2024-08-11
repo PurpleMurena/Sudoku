@@ -111,12 +111,17 @@ createBoard(randomNumber);
             }
 
     }}
-
+let timerOn = 0;
 //input through keyboard
 $("body").keydown(function(event){
     
     if(restartValue == false){
         var input = event.key;
+        
+        if(timerOn == 0){
+            start();
+            console.log("start");
+        }
         inputUserValue(target, input);
     }
 });
@@ -125,14 +130,20 @@ $(".numbers").click(function(e){
     
     if(restartValue == false){
         let value = e.target.firstChild.textContent;
+        
+        if(timerOn == 0){
+            start();
+            console.log("start");
+        }
         inputUserValue(target, value);
     }
 }); 
 //input function
-let timerOn = false;
+
 
 function  inputUserValue(t, value){
 
+    timerOn = 1;
     let currentSolvedPuzzle = solvedPuzzleArray[randomNumber];
     var userInput = parseInt(value);
     
@@ -156,10 +167,7 @@ function  inputUserValue(t, value){
                 //highlighting wrong answer
                 $(`#${target}`).addClass('wrongAnswer');
     
-                if(timerOn == false){
-                    start();
-                    timerOn = true;
-                }
+                
                 count++;
                 $("#mistakes").text(`${count}`);
                 let gO;
@@ -188,7 +196,12 @@ function restart(){
     $("body").off("click");
     $("#timer").text(`00:00`);
     restartValue = false;
-    timerOn= false;
+    timerOn= 0;
+    //timer restart
+    timer = null;
+    startTime = 0;
+    elapsedTime = 0;
+    isRunning = false;
 }
 
 function gameover(){
@@ -232,10 +245,6 @@ function update(){
     let seconds = Math.floor(elapsedTime / 1000 % 60);
     $("#timer").text(`${minutes}:${seconds}`);
 }
-    //remove higlights ones unclicked
-    //timer to retart
-    //we can see all inputs
 
-//timer when mistakes
 
 //when clicking on existing number nothing happens
