@@ -108,6 +108,13 @@ createBoard(randomNumber);
                     previousTarget = target;
                     
                 });
+                //mouse over effect
+                box.mouseover(function(){
+                    box.addClass("mouseover");
+                });
+                box.mouseout(function(){
+                    box.removeClass("mouseover");
+                });
                 
             }
 
@@ -248,3 +255,4 @@ function update(){
 }
 
 
+//when clicking on existing number nothing happens

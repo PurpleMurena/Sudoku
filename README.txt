@@ -19,28 +19,33 @@
 
 //do i need to use class? for sudoku cells?
 13. make timer
+14. make it pop when cell is chosen/ change its color
+
+SUDOKU STYLING
+-highlighting help
+-rounding
+-make mouseover highlight
+
+
+-make server
+-change html to ejs
 -make mistakes in xxx
 -display level
 -change numpad
 -edit notes delete hints
 
-SUDOKU STYLING
--highlighting help
--rounding
-14. make it pop when cell is chosen/ change its color
-
 -main page
-
 -header 
 -footer
--make them with ejs (ejs for keeping count?)
--make for phones too (if it is smaller than width of board and numpad, put numpad under the board)
+
+-connect database
 
 /////UI
--login sign in store information
+-login sign in 
 -games won games lost
 -levels
 -store sudoku
+=settings dark mode
 
 
 
@@ -52,8 +57,7 @@ SUDOKU STYLING
 
 
 
-
-
+-make for phones too (if it is smaller than width of board and numpad, put numpad under the board)
 
 IDEAS
 sudoku on timer that changes time according to level

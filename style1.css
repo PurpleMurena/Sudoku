@@ -1,4 +1,7 @@
 /* alignment sudoku board in the middle*/
+body{
+    color:#424874;
+}
 .alignment{
     display:flex;
     justify-content: center;
@@ -6,12 +9,15 @@
     height:100vh;
     flex-direction: column;
 }
-
+/*#F4EEFF #DCD6F7 #A6B1E1 #424874 #FF6969 #94a3e8  */
 #board{
     
-    width: 270px;
-    height: 270px;
-    background-color: rgb(207, 207, 207);
+    width: 279px;
+    height: 279px;
+    justify-content: center;
+    align-items: center;
+    background-color: #A6B1E1;
+    border-radius: 3px;
     display:flex;
     flex-wrap: wrap-reverse;
     flex-direction: row-reverse;
@@ -21,15 +27,19 @@
 .section{
     width: 90px;
     height: 90px;
+    border: 1px #424874 solid;
     display:flex;
     flex-wrap: wrap-reverse;
     flex-direction: row-reverse;
+    margin: 0.5px;
+    margin-top: 0.25px;
 }
 .cell{
     width: 30px;
     height: 30px;
     box-sizing: border-box;
-    border: 1px black solid;
+    border: 1px #424874 solid;
+    border-radius: 6px;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -72,7 +82,7 @@
     
     width: 270px;
     height: 270px;
-    background-color: rgb(203, 38, 38);
+    background-color: #FF6969;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -87,11 +97,14 @@
     display: inline-block;
 }
 .highlight{
-    background-color: aqua !important;
+    background-color: #DCD6F7 !important;
 }
 .wrongAnswer{
-    background-color: red !important;
+    background-color: #FF6969 !important;
 }
 .empty{
     
+}
+.mouseover{
+    background-color: #94a3e8 !important;
 }
