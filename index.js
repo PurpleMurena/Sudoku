@@ -248,4 +248,3 @@ function update(){
 }
 
 
-//when clicking on existing number nothing happens
