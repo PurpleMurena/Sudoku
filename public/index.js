@@ -179,6 +179,7 @@ function  inputUserValue(t, value){
     
                 //count mistakes
                 count++;
+                wrongAnswer();
                 $("#mistakes").text(`${count}`);
                 
                 if(count == 3){
@@ -191,7 +192,7 @@ function  inputUserValue(t, value){
     }
     
    
-
+    
 function restart(){
     count= 0;
     board.empty();
@@ -241,6 +242,7 @@ function stop(){
         isRunning = false;
     }
 }
+
 function update(){
     
     const currentTime = Date.now();
@@ -248,7 +250,19 @@ function update(){
     let minutes = Math.floor(elapsedTime / (1000 * 60) % 60);
     let seconds = Math.floor(elapsedTime / 1000 % 60);
     $("#timer").text(`${minutes}:${seconds}`);
+    
 }
 
+function wrongAnswer(){
+    let img = $('<img>')
+    .attr('src', '/images/cross2.png')   // Set the source URL of the image
+    .attr('alt', 'cross mark') // Set the alt text for accessibility
+    .attr('width', '43')              // Optional: Set the width of the image
+    .attr('height', '40');   
+    $('#cross').append(img);
+    console.log('yes');
+    img.drawImage(img, 0, 0);
+}
 
 //when clicked highlight is not showed
+//change cross image transparent background

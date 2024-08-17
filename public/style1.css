@@ -57,18 +57,9 @@ body{
     height: 40px;
     background-color: azure;
     display:grid;
-    grid-template-columns: 40px 130px 60px;
+    grid-template-columns: 80px 60px 130px;
     
 }
-#mistakes{
-    display: inline;
-}
-/* #timer{
-    grid-column-start: 0;
-    grid-column-end: 1;
-
-} */
-
 
 #controlPanel{
     width: 270px;

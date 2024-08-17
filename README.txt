@@ -30,8 +30,8 @@ SUDOKU STYLING
 
 18. make server
 19. change html to ejs
+20. make mistakes in xxx
 -timer using ejs
--make mistakes in xxx
 -display level
 -change numpad
 -edit notes delete hints
