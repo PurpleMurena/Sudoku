@@ -98,6 +98,14 @@ createBoard(randomNumber);
                     
                 div.prepend(box);
 
+                //mouse over effect
+                box.mouseover(function(){
+                    box.addClass("mouseover");
+                });
+                box.mouseout(function(){
+                    box.removeClass("mouseover");
+                });
+
                 box.click(function(e){
                     // console.log(e.target.id);
                     $(`#${previousTarget}`).removeClass('highlight');
@@ -108,13 +116,7 @@ createBoard(randomNumber);
                     previousTarget = target;
                     
                 });
-                //mouse over effect
-                box.mouseover(function(){
-                    box.addClass("mouseover");
-                });
-                box.mouseout(function(){
-                    box.removeClass("mouseover");
-                });
+                
                 
             }
 
@@ -126,11 +128,9 @@ $("body").keydown(function(event){
     if(restartValue == false && $(`#${target}`).hasClass('empty')){
         var input = event.key;
         
-        if(timerOn == 0){
-            start();
-            console.log("start");
-        }
         inputUserValue(target, input);
+
+        
     }
 });
 //input through numpad
@@ -139,11 +139,12 @@ $(".numbers").click(function(e){
     if(restartValue == false && $(`#${target}`).hasClass('empty')){
         let value = e.target.firstChild.textContent;
         
-        if(timerOn == 0){
-            start();
-            console.log("start");
-        }
         inputUserValue(target, value);
+
+        // if(timerOn == 0){
+        //     start();
+        //     console.log("start");
+        // }
     }
 }); 
 //input function
@@ -151,15 +152,16 @@ $(".numbers").click(function(e){
 
 function  inputUserValue(t, value){
 
-    timerOn = 1;
     let currentSolvedPuzzle = solvedPuzzleArray[randomNumber];
     var userInput = parseInt(value);
     
-
         if( typeof userInput === "number" && !isNaN(userInput) && userInput !== 0){
-
-            console.log(userInput);
-    
+            if(timerOn == 0){
+                start();
+                console.log("Timer start");
+            }
+            timerOn = 1;
+            //comparing user input with right answer
             if(currentSolvedPuzzle[idDiv][idCell] == userInput ){
     
                 $(`#${t}`).text(`${value}`);
@@ -175,20 +177,16 @@ function  inputUserValue(t, value){
                 //highlighting wrong answer
                 $(`#${target}`).addClass('wrongAnswer');
     
-                
+                //count mistakes
                 count++;
                 $("#mistakes").text(`${count}`);
-                let gO;
+                
                 if(count == 3){
-                     gO = gameover(); 
+                    gameover(); 
                     setTimeout(function(){$("body").click(restart)}, 200);
-                }
-                if(gO == true) {
                     stop();
                 }
-                
             }
-                
         }
     }
     
@@ -220,8 +218,6 @@ function gameover(){
     board.append($('<div>',{text: "GAME OVER"}));
     board.append($('<div>',{text: "click anywhere to restart"}));
     restartValue = true;
-    
-    return true;
 }
 
 //Timer
@@ -255,5 +251,4 @@ function update(){
 }
 
 
-//click highlight has delay
-//timer starts when inpout is not number
+//when clicked highlight is not showed
