@@ -255,4 +255,5 @@ function update(){
 }
 
 
-//when clicking on existing number nothing happens
+//click highlight has delay
+//timer starts when inpout is not number

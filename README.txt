@@ -19,33 +19,36 @@
 
 //do i need to use class? for sudoku cells?
 13. make timer
-14. make it pop when cell is chosen/ change its color
+
 
 SUDOKU STYLING
--highlighting help
--rounding
--make mouseover highlight
+14. make it highlight when cell is chosen
+15. choose coolors
+16. rounding boarders
+17. make mouseover highlight
 
 
--make server
--change html to ejs
+18. make server
+19. change html to ejs
+-timer
 -make mistakes in xxx
 -display level
 -change numpad
 -edit notes delete hints
+
+-highlighting help
+-make it pop?   
 
 -main page
 -header 
 -footer
 
 -connect database
-
-/////UI
 -login sign in 
 -games won games lost
--levels
 -store sudoku
-=settings dark mode
+
+
 
 
 
@@ -60,10 +63,18 @@ SUDOKU STYLING
 -make for phones too (if it is smaller than width of board and numpad, put numpad under the board)
 
 IDEAS
-sudoku on timer that changes time according to level
+
 make sudoku solver?
 -make api for sharing sudoku with solutions/ tO solve sudoku
-make couple play
+-levels
+-settings dark mode
+-sound effect on/off
+-sudoku guide
+-welcome/welcome back
 
+-make couple play
+-make modes with levels
+-sudoku on timer that changes time according to level
+-teach sudoku techniues
 
 
