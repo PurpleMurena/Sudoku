@@ -62,7 +62,7 @@ body{
 }
 
 #controlPanel{
-    width: 270px;
+    width: 280px;
     height: 45px;
     background-color: rgb(27, 117, 117);
     display:grid;
@@ -81,10 +81,12 @@ body{
     
 }
 .numbers{
-    width: 40px;
+    width: 29px;
     height: 50px;
     text-align: center;
-    font-size: 22px;
+    font-size: 32px;
+    align-items: center;
+    margin-top: 10px;
     display: inline-block;
 }
 .highlight{
