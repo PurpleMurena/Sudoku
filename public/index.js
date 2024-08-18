@@ -4,7 +4,7 @@ let idDiv;
 let idCell;
 let count = 0;
 let restartValue = false;
-let isBoxEmpty;
+let helped = false;
 const puzzle1 = [ 
 [3, 0, 6, 5, 0, 8, 4, 0, 0],
 [5, 2, 0, 0, 0, 0, 0, 0, 0],
@@ -88,11 +88,11 @@ createBoard(randomNumber);
                 const box = $('<div>',{class:"cell", id: `div${i+1}Cell${j+1}`});
                 if(currentBoard[i][j] != 0){
                     box.text(`${currentBoard[i][j]}`);
-                    
+                    box.addClass('original');
                 }
                 else{
                     box.text(` `);
-                    box.addClass('empty');
+                    // box.addClass('empty');
                     
                 }
                     
@@ -109,12 +109,15 @@ createBoard(randomNumber);
                 box.click(function(e){
                     // console.log(e.target.id);
                     $(`#${previousTarget}`).removeClass('highlight');
+                    if(helped == true){
+                        $(`#${previousTarget}`).addClass('original');
+                        helped == false;
+                    }
                     target = e.target.id;
-                    idDiv = target.slice(3,4)-1;
-                    idCell = target.slice(8,9)-1;
+                    idDiv = target.slice(3,4);
+                    idCell = target.slice(8,9);
                     $(`#${target}`).addClass('highlight');
                     previousTarget = target;
-                    
                 });
                 
                 
@@ -125,7 +128,7 @@ let timerOn = 0;
 //input through keyboard
 $("body").keydown(function(event){
     
-    if(restartValue == false && $(`#${target}`).hasClass('empty')){
+    if(restartValue == false && !$(`#${target}`).hasClass('original')){
         var input = event.key;
         
         inputUserValue(target, input);
@@ -136,7 +139,7 @@ $("body").keydown(function(event){
 //input through numpad
 $(".numbers").click(function(e){
     
-    if(restartValue == false && $(`#${target}`).hasClass('empty')){
+    if(restartValue == false && !$(`#${target}`).hasClass('original')){
         let value = e.target.firstChild.textContent;
         
         inputUserValue(target, value);
@@ -149,10 +152,10 @@ $(".numbers").click(function(e){
 }); 
 //input function
 
-
 function  inputUserValue(t, value){
-
+     
     let currentSolvedPuzzle = solvedPuzzleArray[randomNumber];
+    
     var userInput = parseInt(value);
     
         if( typeof userInput === "number" && !isNaN(userInput) && userInput !== 0){
@@ -162,7 +165,7 @@ function  inputUserValue(t, value){
             }
             timerOn = 1;
             //comparing user input with right answer
-            if(currentSolvedPuzzle[idDiv][idCell] == userInput ){
+            if(currentSolvedPuzzle[idDiv-1][idCell-1] == userInput ){
     
                 $(`#${t}`).text(`${value}`);
                 //removing wrong answer highlight
@@ -187,6 +190,8 @@ function  inputUserValue(t, value){
                     setTimeout(function(){$("body").click(restart)}, 200);
                     stop();
                 }
+            
+            
             }
         }
     }
@@ -255,14 +260,22 @@ function update(){
 
 function wrongAnswer(){
     let img = $('<img>')
-    .attr('src', '/images/cross2.png')   // Set the source URL of the image
-    .attr('alt', 'cross mark') // Set the alt text for accessibility
-    .attr('width', '43')              // Optional: Set the width of the image
+    .attr('src', '/images/cross2.png')  
+    .attr('alt', 'cross mark')
+    .attr('width', '43')              
     .attr('height', '40');   
     $('#cross').append(img);
     console.log('yes');
-    img.drawImage(img, 0, 0);
 }
 
-//when clicked highlight is not showed
-//change cross image transparent background
+//control panel
+
+//help button
+$('#helpButton').click(function(){
+    console.log(idCell,idDiv);
+    console.log(target);
+   helped = true;
+    let puzzle = solvedPuzzleArray[randomNumber];
+    $(`#${target}`).text(`${puzzle[idDiv][idCell]}`);
+    console.log(previousTarget);
+});

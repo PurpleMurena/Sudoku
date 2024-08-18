@@ -64,11 +64,18 @@ body{
 #controlPanel{
     width: 280px;
     height: 45px;
-    background-color: rgb(27, 117, 117);
+    background-color: #dcd6f7;
     display:grid;
     grid-template-columns: repeat(4, 65px);
 }
-
+#undoButton{
+    width: 45px;
+    height: 45px;
+}
+#helpButton{
+    width:35px;
+    height: 35px;
+}
 #gameover{
     
     width: 270px;
@@ -94,9 +101,10 @@ body{
 }
 .wrongAnswer{
     background-color: #FF6969 !important;
+    /* //change size */
 }
-.empty{
-    
+.original{
+    color:#72707f;
 }
 .mouseover{
     background-color: #94a3e8;

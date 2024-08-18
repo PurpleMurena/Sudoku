@@ -30,23 +30,30 @@ SUDOKU STYLING
 
 18. make server
 19. change html to ejs
-20. make mistakes in xxx
--change numpad
--edit notes delete hints
--finish styling mistakes count
--timer finish styling
+20. make mistakes in xxx     //change colors and transparent background 
+21. change numpad
+22. help
+
+-notes
+-erase
+-undo button             //change colors
+
 -display level
+-timer finish styling
 
 
+
+-if game is too long gameover
+-stop timer
 -highlighting help
 -make it pop?   
+-when clicked highlight is not showed
 
 -main page
 -header 
 -footer
-
--connect database
 -login sign in 
+-connect database
 -games won games lost
 -store sudoku
 
