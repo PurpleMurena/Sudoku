@@ -183,8 +183,6 @@ function  inputUserValue(t, value){
                 //count mistakes
                 count++;
                 wrongAnswer();
-                $("#mistakes").text(`${count}`);
-                
                 if(count == 3){
                     gameover(); 
                     setTimeout(function(){$("body").click(restart)}, 200);
@@ -204,7 +202,6 @@ function restart(){
     board.attr('id', "board");
     randomNumber = parseInt(Math.random()* puzzleArray.length);
     createBoard(randomNumber);
-    $("#mistakes").text(`${count}`);
     $("body").off("click");
     $("#timer").text(`00:00`);
     restartValue = false;
@@ -214,6 +211,8 @@ function restart(){
     startTime = 0;
     elapsedTime = 0;
     isRunning = false;
+    //wrong answer count restart
+    $('#mistakes').empty();
 }
 
 function gameover(){
@@ -264,7 +263,7 @@ function wrongAnswer(){
     .attr('alt', 'cross mark')
     .attr('width', '43')              
     .attr('height', '40');   
-    $('#cross').append(img);
+    $('#mistakes').append(img);
     console.log('yes');
 }
 
